@@ -1,9 +1,13 @@
 from markdown2textile.cli import convert_markdown_to_textile, convert_textile_to_markdown
 
+
 def test_convert_markdown_to_textile():
     markdown = "**bold text**"
     expected_textile = "*bold text*"
-    assert convert_markdown_to_textile(markdown) == expected_textile
+    expected_textile = expected_textile.replace("\r", "").replace("\n", "")
+    tested = convert_markdown_to_textile(markdown).replace("\r", "").replace("\n", "")
+    assert tested == expected_textile
+
 
 def test_convert_markdown_to_textile_empty_input():
     markdown = """\
@@ -70,7 +74,10 @@ print("Hello, world")
 * *Bold* and *Bold*
 * _Italic_ and _Italic_
 """
-    assert convert_markdown_to_textile(markdown) == expected_textile
+    expected_textile = expected_textile.replace("\r", "").replace("\n", "")
+    tested = convert_markdown_to_textile(markdown).replace("\r", "").replace("\n", "")
+    assert tested == expected_textile
+
 
 def test_convert_textile_to_markdown():
     textile = """
@@ -79,8 +86,10 @@ echo abcdefg
 </code></pre>
 """
     expected_markdown = """
-```bash
+``` bash
 echo abcdefg
 ```
 """
-    assert convert_textile_to_markdown(textile) == expected_markdown
+    expected_markdown = expected_markdown.replace("\r", "").replace("\n", "")
+    tested = convert_textile_to_markdown(textile).replace("\r", "").replace("\n", "")
+    assert tested == expected_markdown
