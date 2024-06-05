@@ -1,4 +1,4 @@
-from markdown2textile.pandoc_filter import convert_markdown_to_textile
+from markdown2textile.cli import convert_markdown_to_textile, convert_textile_to_markdown
 
 def test_convert_markdown_to_textile():
     markdown = "**bold text**"
@@ -71,3 +71,16 @@ print("Hello, world")
 * _Italic_ and _Italic_
 """
     assert convert_markdown_to_textile(markdown) == expected_textile
+
+def test_convert_textile_to_markdown():
+    textile = """
+<pre><code class="bash">
+echo abcdefg
+</code></pre>
+"""
+    expected_markdown = """
+```bash
+echo abcdefg
+```
+"""
+    assert convert_textile_to_markdown(textile) == expected_markdown
