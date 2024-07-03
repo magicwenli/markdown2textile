@@ -4,6 +4,6 @@
 import sys
 
 if __name__ == "__main__":
-    from markdown2textile.cli import mt_converter
+    from markdown2textile.cli import markdown2textile
 
-    sys.exit(mt_converter())
+    sys.exit(markdown2textile())
