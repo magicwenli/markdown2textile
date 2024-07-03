@@ -19,7 +19,7 @@ def convert_textile_to_markdown(textile):
 @click.version_option(version=__version__, prog_name="markdown2textile")
 @click.option("-i", "--input", type=click.File("rb"), default="-", help="The input file. Default is stdin.")
 @click.option("-o", "--output", type=click.File("wb"), default="-", help="The output file. Default is stdout.")
-def mt_converter(input, output):
+def markdown2textile(input, output):
     is_m2t= True
     if not input.name.endswith(".md") and not input.name.endswith(".markdown"):
         is_m2t = False
@@ -33,4 +33,4 @@ def mt_converter(input, output):
 
 
 if __name__ == "__main__":
-    mt_converter()
+    markdown2textile()
